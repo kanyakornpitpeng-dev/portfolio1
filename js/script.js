@@ -1,51 +1,65 @@
-// ================================
-// สร้างใบไม้ปลิว
-// ================================
+// =====================================
+// Portfolio JavaScript
+// =====================================
+
+// ====== ใบไม้ปลิว ======
 
 const leafContainer = document.getElementById("leaf-container");
+
+// ชื่อไฟล์รูปใบไม้ (ต้องอยู่ในโฟลเดอร์ images)
+const leafImages = [
+    "images/leaf.jpg"
+];
 
 function createLeaf() {
 
     const leaf = document.createElement("img");
 
-    leaf.src = "images/leaf.jpg";
+    // สุ่มรูปใบไม้
+    leaf.src = leafImages[Math.floor(Math.random() * leafImages.length)];
 
     leaf.classList.add("leaf");
 
+    // ตำแหน่งเริ่มต้น
     leaf.style.left = Math.random() * window.innerWidth + "px";
 
-    leaf.style.width = (20 + Math.random() * 30) + "px";
+    // ขนาดสุ่ม
+    const size = 20 + Math.random() * 35;
+    leaf.style.width = size + "px";
 
-    leaf.style.animationDuration = (8 + Math.random() * 7) + "s";
+    // ความเร็วสุ่ม
+    leaf.style.animationDuration = (8 + Math.random() * 6) + "s";
 
-    leaf.style.opacity = Math.random();
+    // ความโปร่งใส
+    leaf.style.opacity = 0.5 + Math.random() * 0.5;
 
-    leaf.style.transform =
-        `rotate(${Math.random() * 360}deg)`;
+    // หมุนเริ่มต้น
+    leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
 
     leafContainer.appendChild(leaf);
 
+    // ลบเมื่อปลิวเสร็จ
     setTimeout(() => {
         leaf.remove();
-    },15000);
+    }, 15000);
 
 }
 
-setInterval(createLeaf,500);
+// สร้างใบไม้ทุก 400 มิลลิวินาที
+setInterval(createLeaf, 400);
 
-// ================================
-// Card Animation
-// ================================
+// ====== Animation Card ======
 
 const cards = document.querySelectorAll(".card");
 
-const observer = new IntersectionObserver((entries)=>{
+const observer = new IntersectionObserver((entries) => {
 
-    entries.forEach(entry=>{
+    entries.forEach(entry => {
 
-        if(entry.isIntersecting){
+        if (entry.isIntersecting) {
 
-            entry.target.classList.add("show");
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
 
         }
 
@@ -53,8 +67,34 @@ const observer = new IntersectionObserver((entries)=>{
 
 });
 
-cards.forEach(card=>{
+cards.forEach(card => {
+
+    card.style.opacity = "0";
+    card.style.transform = "translateY(50px)";
+    card.style.transition = "0.8s";
 
     observer.observe(card);
+
+});
+
+// ====== Smooth Scroll ======
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+
+    anchor.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        const target = document.querySelector(this.getAttribute("href"));
+
+        if (target) {
+
+            target.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+    });
 
 });
