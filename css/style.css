@@ -370,3 +370,63 @@ font-size:16px;
 }
 
 }
+/* ======================
+   Leaf Animation
+====================== */
+
+.leaf{
+
+    position:fixed;
+
+    top:-60px;
+
+    pointer-events:none;
+
+    animation:fall linear forwards;
+
+    z-index:-1;
+
+}
+
+@keyframes fall{
+
+    0%{
+
+        transform:
+        translateY(0)
+        rotate(0deg);
+
+    }
+
+    100%{
+
+        transform:
+        translateY(110vh)
+        translateX(120px)
+        rotate(360deg);
+
+    }
+
+}
+
+/* ======================
+   Card Animation
+====================== */
+
+.card{
+
+    opacity:0;
+
+    transform:translateY(50px);
+
+}
+
+.card.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+    transition:.8s;
+
+}
