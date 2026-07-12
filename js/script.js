@@ -8,7 +8,7 @@ function createLeaf() {
 
     const leaf = document.createElement("img");
 
-    leaf.src = "images/leaf.png";
+    leaf.src = "images/leaf.jpg";
 
     leaf.classList.add("leaf");
 
