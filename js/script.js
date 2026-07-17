@@ -2,64 +2,56 @@
 // Portfolio JavaScript
 // =====================================
 
-// ====== ใบไม้ปลิว ======
+// ====== เอฟเฟกต์ลอย ======
 
-const leafContainer = document.getElementById("leaf-container");
+const weatherContainer = document.getElementById("leaf-container");
 
-// ชื่อไฟล์รูปใบไม้ (ต้องอยู่ในโฟลเดอร์ images)
-const leafImages = [
-    "images/rain.png",
-    "images/lightning.png"
+// ใส่รูปที่ต้องการ
+const images = [
+    "images/lightning.png",
+    "images/cloud.png"
 ];
-function createLeaf() {
 
-    const leaf = document.createElement("img");
+function createItem() {
 
-    // สุ่มรูปใบไม้
-    leaf.src = leafImages[Math.floor(Math.random() * leafImages.length)];
+    const item = document.createElement("img");
 
-    leaf.classList.add("leaf");
+    item.src = images[Math.floor(Math.random() * images.length)];
 
-    // ตำแหน่งเริ่มต้น
-    leaf.style.left = Math.random() * window.innerWidth + "px";
+    item.classList.add("leaf");
 
-    // ขนาดสุ่ม
-    const size = 20 + Math.random() * 35;
-    leaf.style.width = size + "px";
+    item.style.left = Math.random() * window.innerWidth + "px";
 
-    // ความเร็วสุ่ม
-    leaf.style.animationDuration = (8 + Math.random() * 6) + "s";
+    item.style.top = "-80px";
 
-    // ความโปร่งใส
-    leaf.style.opacity = 0.5 + Math.random() * 0.5;
+    item.style.width = (40 + Math.random() * 40) + "px";
 
-    // หมุนเริ่มต้น
-    leaf.style.transform = `rotate(${Math.random() * 360}deg)`;
+    item.style.animationDuration = (8 + Math.random() * 6) + "s";
 
-    leafContainer.appendChild(leaf);
+    item.style.opacity = 0.8;
 
-    // ลบเมื่อปลิวเสร็จ
+    weatherContainer.appendChild(item);
+
     setTimeout(() => {
-        leaf.remove();
-    }, 15000);
+        item.remove();
+    },15000);
 
 }
 
-// สร้างใบไม้ทุก 400 มิลลิวินาที
-setInterval(createLeaf, 400);
+setInterval(createItem,700);
 
-// ====== Animation Card ======
+
+// ====== Card Animation ======
 
 const cards = document.querySelectorAll(".card");
 
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries)=>{
 
-    entries.forEach(entry => {
+    entries.forEach(entry=>{
 
-        if (entry.isIntersecting) {
+        if(entry.isIntersecting){
 
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
+            entry.target.classList.add("show");
 
         }
 
@@ -67,30 +59,27 @@ const observer = new IntersectionObserver((entries) => {
 
 });
 
-cards.forEach(card => {
-
-    card.style.opacity = "0";
-    card.style.transform = "translateY(50px)";
-    card.style.transition = "0.8s";
+cards.forEach(card=>{
 
     observer.observe(card);
 
 });
 
+
 // ====== Smooth Scroll ======
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
 
-    anchor.addEventListener("click", function (e) {
+    anchor.addEventListener("click",function(e){
 
         e.preventDefault();
 
-        const target = document.querySelector(this.getAttribute("href"));
+        const target=document.querySelector(this.getAttribute("href"));
 
-        if (target) {
+        if(target){
 
             target.scrollIntoView({
-                behavior: "smooth"
+                behavior:"smooth"
             });
 
         }
