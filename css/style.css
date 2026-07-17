@@ -23,68 +23,44 @@ body{
 /* ---------- Weather Effects ---------- */
 
 #weather-container{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    overflow:hidden;
-    pointer-events:none;
-    z-index:999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 9999;
 }
-
-/* เมฆ */
 
 .cloud{
     position:absolute;
-    top:20px;
-    opacity:.8;
     animation:cloudMove linear infinite;
 }
-
-/* ฝน */
 
 .raindrop{
     position:absolute;
     top:-80px;
-    width:22px;
-    animation-name:rainFall;
-    animation-timing-function:linear;
-    animation-fill-mode:forwards;
-}
-
-/* สายฟ้า */
-
-.lightning{
-    position:fixed;
-    inset:0;
-    background:white;
-    opacity:0;
-    animation:lightningFlash .25s linear;
+    width:20px;
+    animation:rainFall linear forwards;
 }
 
 @keyframes rainFall{
-
     from{
         transform:translateY(-80px);
     }
-
     to{
         transform:translateY(110vh);
     }
-
 }
 
 @keyframes cloudMove{
-
     from{
-        transform:translateX(-250px);
+        transform:translateX(-300px);
     }
-
     to{
         transform:translateX(calc(100vw + 300px));
     }
-
 }
 
 @keyframes lightningFlash{
