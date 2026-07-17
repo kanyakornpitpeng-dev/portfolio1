@@ -1,52 +1,43 @@
 const weather = document.getElementById("weather-container");
 
-// ฝน
-function createRain(){
+// ---------- ฝน ----------
+function createRain() {
 
-    const rain=document.createElement("img");
+    const rain = document.createElement("img");
 
-    rain.src="images/raindrop.png";
+    rain.src = "images/raindrop.png";
+    rain.className = "raindrop";
 
-    rain.className="raindrop";
-
-    rain.style.left=Math.random()*window.innerWidth+"px";
-
-    rain.style.width=(15+Math.random()*18)+"px";
-
-    rain.style.animationDuration=(2+Math.random()*2)+"s";
+    rain.style.left = Math.random() * window.innerWidth + "px";
+    rain.style.width = (15 + Math.random() * 18) + "px";
+    rain.style.animationDuration = (2 + Math.random() * 2) + "s";
 
     weather.appendChild(rain);
 
-    rain.addEventListener("animationend",()=>{
+    rain.addEventListener("animationend", () => {
         rain.remove();
     });
 
 }
 
-// เมฆ
+// ---------- เมฆ ----------
+function createCloud() {
 
-function createCloud(){
+    const cloud = document.createElement("img");
 
-    const cloud=document.createElement("img");
+    cloud.src = "images/cloud.png";
+    cloud.className = "cloud";
 
-    cloud.src="images/cloud.png";
-
-    cloud.className="cloud";
-
-    cloud.style.top=Math.random()*120+"px";
-
-    cloud.style.left="-250px";
-
-    cloud.style.width=(180+Math.random()*120)+"px";
-
-    cloud.style.animationDuration=(25+Math.random()*20)+"s";
+    cloud.style.top = Math.random() * 120 + "px";
+    cloud.style.left = "-300px";
+    cloud.style.width = (180 + Math.random() * 120) + "px";
+    cloud.style.animationDuration = (25 + Math.random() * 20) + "s";
 
     weather.appendChild(cloud);
 
 }
 
-// สายฟ้า
-
+// ---------- สายฟ้า ----------
 function lightning() {
 
     const bolt = document.createElement("img");
@@ -71,4 +62,20 @@ function lightning() {
     }, 180);
 }
 
+// ---------- เริ่มทำงาน ----------
+
+// สร้างเมฆ
+for (let i = 0; i < 5; i++) {
+    createCloud();
+}
+
+// สร้างฝนตกทั่วหน้าจอ
+for (let i = 0; i < 120; i++) {
+    setTimeout(createRain, Math.random() * 3000);
+}
+
+// ฝนตกต่อเนื่อง
+setInterval(createRain, 80);
+
+// สายฟ้าทุก 5 วินาที
 setInterval(lightning, 5000);
