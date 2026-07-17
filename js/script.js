@@ -8,9 +8,9 @@ const leafContainer = document.getElementById("leaf-container");
 
 // ชื่อไฟล์รูปใบไม้ (ต้องอยู่ในโฟลเดอร์ images)
 const leafImages = [
-    "images/leaf.jpg"
+    "images/rain.png",
+    "images/lightning.png"
 ];
-
 function createLeaf() {
 
     const leaf = document.createElement("img");
