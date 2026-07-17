@@ -1,0 +1,20 @@
+portfolio/
+│
+├── index.html
+├── history.html
+├── profile.html
+├── activities.html
+├── contact.html
+│
+├── css/
+│   └── style.css
+│
+├── js/
+│   └── script.js
+│
+└── images/
+    ├── profile.jpg
+    ├── leaf.png
+    ├── work1.jpg
+    ├── work2.jpg
+    └── work3.jpg
