@@ -20,7 +20,9 @@ body{
 
 
 
-#leaf-container{
+/* ---------- Weather Effects ---------- */
+
+#weather-container{
     position:fixed;
     top:0;
     left:0;
@@ -31,27 +33,67 @@ body{
     z-index:999;
 }
 
-.leaf{
+/* เมฆ */
+
+.cloud{
     position:absolute;
-    top:-80px;
-    animation:fall linear forwards;
+    top:20px;
+    opacity:.8;
+    animation:cloudMove linear infinite;
 }
 
-@keyframes fall{
+/* ฝน */
 
-    0%{
-        transform:
-        translateY(0)
-        translateX(0)
-        rotate(0deg);
+.raindrop{
+    position:absolute;
+    top:-80px;
+    width:22px;
+    animation-name:rainFall;
+    animation-timing-function:linear;
+    animation-fill-mode:forwards;
+}
+
+/* สายฟ้า */
+
+.lightning{
+    position:fixed;
+    inset:0;
+    background:white;
+    opacity:0;
+    animation:lightningFlash .25s linear;
+}
+
+@keyframes rainFall{
+
+    from{
+        transform:translateY(-80px);
     }
 
-    100%{
-        transform:
-        translateY(120vh)
-        translateX(150px)
-        rotate(360deg);
+    to{
+        transform:translateY(110vh);
     }
+
+}
+
+@keyframes cloudMove{
+
+    from{
+        transform:translateX(-250px);
+    }
+
+    to{
+        transform:translateX(calc(100vw + 300px));
+    }
+
+}
+
+@keyframes lightningFlash{
+
+    0%{opacity:0;}
+    20%{opacity:.9;}
+    40%{opacity:0;}
+    60%{opacity:.8;}
+    100%{opacity:0;}
 
 }
 
